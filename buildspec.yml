@@ -3,11 +3,11 @@ version: 0.2
 phases:
   install:
     commands:
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
       - curl -sS -o aws-iam-authenticator https://s3.us-west-2.amazonaws.com/amazon-eks/1.25.16/2024-01-04/bin/linux/amd64/aws-iam-authenticator
       - curl -sS -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.25.16/2024-01-04/bin/darwin/amd64/kubectl
       - chmod +x ./kubectl ./aws-iam-authenticator
       - export PATH=$PWD/:$PATH
-      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
       - apt-get update && apt-get -y install jq python3-pip python3-dev && pip3 install --upgrade awscli
   pre_build:
       commands:
